@@ -27,6 +27,12 @@ public class AlunoTest {
 	}
 
 	@Test
+	public void validarNome() throws NomeIncorretoException {
+		al.setNome("   Joao    ");
+		assertEquals("Joao", al.getNome());
+	}
+
+	@Test
 	public void naoUltrapassarLimiteNotaUmLancamento() throws NotaInvalidaException {
 		al.entraNota(120.0);
 		assertEquals(0, al.getNotas().size());
@@ -67,9 +73,16 @@ public class AlunoTest {
 	}
 
 	@Test
-	public void validarNome() throws NomeIncorretoException {
-		al.setNome("   Joao    ");
-		assertEquals("Joao", al.getNome());
+	public void validaElementoList() throws NotaInvalidaException {
+		al.entraNota(10.0);
+		assertEquals(10.0, al.retornaNotaTotal());
+	}
+
+	@Test
+	public void validarList() throws NotaInvalidaException {
+		al.entraNota(20.0);
+		al.entraNota(10.0);
+		assertEquals(1, al.getNotas().size());
 	}
 
 }
